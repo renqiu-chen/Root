@@ -9,6 +9,9 @@ public class Rubik : MonoBehaviour
     public bool moveLeft;
     public bool moveRight;
     public float moveTimeGap;
+    private Rigidbody _rigidbody;
+    [SerializeField] private Block currenBlock;
+    [SerializeField] private Block targetBlock;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,7 @@ public class Rubik : MonoBehaviour
                 }
             }
         }
+        _rigidbody = GetComponent<Rigidbody>();
         Reset();
     }
 
