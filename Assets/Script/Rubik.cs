@@ -245,7 +245,8 @@ public class Rubik : MonoBehaviour
                 {
                     if (_rotateTimer)
                     {
-                        _animator.Play("TurnUp");
+                        //_animator.Play("TurnUp");
+                        _animator.SetTrigger("Forward");
                         HorizontalRotate(true);
                         StartCoroutine(ResetRotateTimer());
                     }
@@ -254,7 +255,8 @@ public class Rubik : MonoBehaviour
                 {
                     if (_rotateTimer)
                     {
-                        _animator.Play("TurnDown");
+                        //_animator.Play("TurnDown");
+                        _animator.SetTrigger("Backward");
                         HorizontalRotate(false);
                         StartCoroutine(ResetRotateTimer());
                     }
@@ -263,7 +265,8 @@ public class Rubik : MonoBehaviour
                 {
                     if (_rotateTimer)
                     {
-                        _animator.Play("TurnRight");
+                        //_animator.Play("TurnRight");
+                        _animator.SetTrigger("Right");
                         VerticalRotate(true);
                         StartCoroutine(ResetRotateTimer());
                     }
@@ -272,7 +275,8 @@ public class Rubik : MonoBehaviour
                 {
                     if (_rotateTimer)
                     {
-                        _animator.Play("TurnLeft");
+                        //_animator.Play("TurnLeft");
+                        _animator.SetTrigger("Left");
                         VerticalRotate(false);
                         StartCoroutine(ResetRotateTimer());
                     }
@@ -298,6 +302,7 @@ public class Rubik : MonoBehaviour
         _rotateTimer = true;
         yield return null;
     }
+  
 
     public void SetActiveCube(Vector3 input)
     {
