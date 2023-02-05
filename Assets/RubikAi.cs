@@ -117,24 +117,6 @@ public class RubikAi : MonoBehaviour
                     StartCoroutine(BetweenMove());
                 }
             }
-            
-
-            IEnumerator RotateMe(Vector3 byAngles, float inTime)
-            {
-                _rotateTimer = false;
-                // var fromAngle = transform.rotation;
-                // var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
-                // for(var t = 0f; t < 1; t += Time.deltaTime/inTime) {
-                //     transform.rotation = Quaternion.Lerp(fromAngle, toAngle, t);
-                //     yield return null;
-                // }
-                // transform.rotation = toAngle;
-                
-                _rotateTimer = true;
-                yield return null;
-            }
-            
-            
         }
     }
     

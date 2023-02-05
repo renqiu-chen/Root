@@ -186,7 +186,6 @@ public class Rubik : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
-                    
                     if (_rotateTimer)
                     {
                         HorizontalRotate(true);
