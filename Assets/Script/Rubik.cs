@@ -189,7 +189,7 @@ public class Rubik : MonoBehaviour
                     
                     if (_rotateTimer)
                     {
-                        HorizontalRotate(false);
+                        HorizontalRotate(true);
                         StartCoroutine(ResetRotateTimer(new Vector3(-90, 0, 0)));
                     }
                 }
@@ -197,8 +197,8 @@ public class Rubik : MonoBehaviour
                 {
                     if (_rotateTimer)
                     {
-                        HorizontalRotate(true);
-                        StartCoroutine(ResetRotateTimer(new Vector3(90, -0, 0)));
+                        HorizontalRotate(false);
+                        StartCoroutine(ResetRotateTimer(new Vector3(90, 0, 0)));
                     }
                 }
                 if (Input.GetKey(KeyCode.RightArrow))
