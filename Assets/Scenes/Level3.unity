@@ -2033,6 +2033,8 @@ MonoBehaviour:
   checkRight: 1
   checkBack: 1
   pass: 1
+  redlight: {fileID: 1006580904}
+  greenlight: {fileID: 1006580903}
 --- !u!65 &823237983
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2668,6 +2670,18 @@ PrefabInstance:
 --- !u!4 &1006580902 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2903191291164511667, guid: f38a69f69472ab54f844ce72d03ae5c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1006580901}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1006580903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7711943304709840155, guid: f38a69f69472ab54f844ce72d03ae5c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1006580901}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1006580904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8534966102541072394, guid: f38a69f69472ab54f844ce72d03ae5c5,
     type: 3}
   m_PrefabInstance: {fileID: 1006580901}
   m_PrefabAsset: {fileID: 0}

@@ -13,6 +13,8 @@ public class CheckBlock :Block
     public bool checkBack;
     public bool pass=true;
     private bool _checkFlag;
+    public GameObject redlight;
+    public GameObject greenlight;
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Rubik")
@@ -119,11 +121,13 @@ public class CheckBlock :Block
 
         if (pass)
         {
-            Debug.Log("pass");
+            greenlight.SetActive(true);
         }
         else
         {
-            Debug.Log("not pass");
+            redlight.SetActive(true);
         }
     }
+
+    
 }
