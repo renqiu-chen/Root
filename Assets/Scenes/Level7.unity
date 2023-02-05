@@ -1778,6 +1778,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 452103219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &452103221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7711943304709840155, guid: f38a69f69472ab54f844ce72d03ae5c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 452103219}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &452103222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8534966102541072394, guid: f38a69f69472ab54f844ce72d03ae5c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 452103219}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &521811318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3647,8 +3659,8 @@ MonoBehaviour:
   checkRight: 1
   checkBack: 0
   pass: 1
-  redlight: {fileID: 0}
-  greenlight: {fileID: 0}
+  redlight: {fileID: 452103222}
+  greenlight: {fileID: 452103221}
 --- !u!65 &1317679297
 BoxCollider:
   m_ObjectHideFlags: 0
