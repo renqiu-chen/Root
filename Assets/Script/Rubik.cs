@@ -272,7 +272,7 @@ public class Rubik : MonoBehaviour
                 {
                     if (_rotateTimer)
                     {
-                        _animator.Play("TurnLEft");
+                        _animator.Play("TurnLeft");
                         VerticalRotate(false);
                         StartCoroutine(ResetRotateTimer());
                     }
