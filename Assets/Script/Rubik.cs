@@ -207,7 +207,6 @@ public class Rubik : MonoBehaviour
                     if (_rotateTimer)
                     {
                         VerticalRotate(false);
-                        Log();
                         StartCoroutine(ResetRotateTimer(new Vector3(0, 0, 90)));
                     }
                 }
@@ -216,7 +215,6 @@ public class Rubik : MonoBehaviour
                     if (_rotateTimer)
                     {
                         VerticalRotate(true);
-                        Log();
                         StartCoroutine(ResetRotateTimer(new Vector3(0, 0, -90)));
                     }
                 }
