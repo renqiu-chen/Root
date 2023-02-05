@@ -20,13 +20,13 @@ public class CheckBlock :Block
             currentRubik = other.GetComponent<Rubik>();
             if (other.transform.position - this.transform.position == Vector3.zero)
             {
+                currentRubik.blockFlag = true;
                 MeshRenderer.material = stayMaterial;
                 if (_checkFlag)
                 {
                     Check();
                     _checkFlag = false;
                 }
-                currentRubik.blockFlag = true;
             }
             else
             {
