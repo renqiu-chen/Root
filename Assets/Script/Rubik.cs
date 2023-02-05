@@ -105,7 +105,7 @@ public class Rubik : MonoBehaviour
             if (!stopMoving)
             {
                 this.transform.position =
-                    Vector3.MoveTowards(this.transform.position, targetBlock.transform.position, Time.fixedDeltaTime);
+                    Vector3.MoveTowards(this.transform.position, targetBlock.transform.position, 2*Time.fixedDeltaTime);
                 if (_moveForwardFlag)
                 {
                     currentBlock = targetBlock;
@@ -186,20 +186,19 @@ public class Rubik : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
+                    
                     if (_rotateTimer)
                     {
-                        HorizontalRotate(true);
-                        Log();
-                        StartCoroutine(ResetRotateTimer(new Vector3(90, -0, 0)));
+                        HorizontalRotate(false);
+                        StartCoroutine(ResetRotateTimer(new Vector3(-90, 0, 0)));
                     }
                 }
                 if (Input.GetKey(KeyCode.DownArrow))
                 {
                     if (_rotateTimer)
                     {
-                        HorizontalRotate(false);
-                        Log();
-                        StartCoroutine(ResetRotateTimer(new Vector3(-90, 0, 0)));
+                        HorizontalRotate(true);
+                        StartCoroutine(ResetRotateTimer(new Vector3(90, -0, 0)));
                     }
                 }
                 if (Input.GetKey(KeyCode.RightArrow))

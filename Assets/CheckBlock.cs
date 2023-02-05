@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,6 +16,9 @@ public class CheckBlock :Block
     private bool _checkFlag;
     public GameObject redlight;
     public GameObject greenlight;
+
+
+
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Rubik")
