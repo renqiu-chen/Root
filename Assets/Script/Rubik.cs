@@ -23,6 +23,7 @@ public class Rubik : MonoBehaviour
     private bool _rotateRight=false;
     private bool _rotateUp=false;
     private bool _rotateDown=false;
+    private Animator _animator;
     [SerializeField] private Block currentBlock;
     [SerializeField] private Block targetBlock;
     [SerializeField] private Block verticalTargetBlock;
@@ -40,6 +41,7 @@ public class Rubik : MonoBehaviour
             }
         }
         _rigidbody = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
         moveAvailability = true;
         var ray = new Ray (transform.position, transform.forward);
         RaycastHit hit;
@@ -243,7 +245,8 @@ public class Rubik : MonoBehaviour
                 {
                     if (_rotateTimer)
                     {
-                        transform.Rotate(0,0,90);
+                        _animator.Play("TurnUp");
+                        HorizontalRotate(true);
                         StartCoroutine(ResetRotateTimer());
                     }
                 }
@@ -251,7 +254,8 @@ public class Rubik : MonoBehaviour
                 {
                     if (_rotateTimer)
                     {
-                        transform.Rotate(0,0,-90);
+                        _animator.Play("TurnDown");
+                        HorizontalRotate(false);
                         StartCoroutine(ResetRotateTimer());
                     }
                 }
@@ -259,7 +263,8 @@ public class Rubik : MonoBehaviour
                 {
                     if (_rotateTimer)
                     {
-                        transform.Rotate(0,90,0);
+                        _animator.Play("TurnRight");
+                        VerticalRotate(true);
                         StartCoroutine(ResetRotateTimer());
                     }
                 }
@@ -267,7 +272,8 @@ public class Rubik : MonoBehaviour
                 {
                     if (_rotateTimer)
                     {
-                        transform.Rotate(0,-90,0);
+                        _animator.Play("TurnLEft");
+                        VerticalRotate(false);
                         StartCoroutine(ResetRotateTimer());
                     }
                 }
