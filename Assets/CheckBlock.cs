@@ -17,7 +17,8 @@ public class CheckBlock :Block
     private bool _checkFlag;
     public GameObject redlight;
     public GameObject greenlight;
-
+    public AudioSource SuccessSound;
+    public AudioSource FailSound;
 
 
     private void OnTriggerStay(Collider other)
@@ -127,13 +128,13 @@ public class CheckBlock :Block
         if (pass)
         {
             greenlight.SetActive(true);
-            GameObject.Find("Success").GetComponent<AudioSource>().Play();
+            SuccessSound.Play();
         }
         else
         {
             redlight.SetActive(true);
             currentRubik.moveAvailability = false;
-            GameObject.Find("Fail").GetComponent<AudioSource>().Play();
+            FailSound.Play();
             StartCoroutine(RestartGame());
         }
     }

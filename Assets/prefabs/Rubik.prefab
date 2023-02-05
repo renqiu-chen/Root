@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 1185143659818658631}
   - component: {fileID: 1185143659818658624}
   - component: {fileID: 1185143659818658635}
+  - component: {fileID: 3242913367736686423}
   m_Layer: 0
   m_Name: Rubik
   m_TagString: Rubik
@@ -174,6 +175,14 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!81 &3242913367736686423
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185143659818658625}
+  m_Enabled: 1
 --- !u!1 &1185143659882482138
 GameObject:
   m_ObjectHideFlags: 0
