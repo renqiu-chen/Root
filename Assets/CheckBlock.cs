@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CheckBlock :Block
 {
@@ -126,11 +127,23 @@ public class CheckBlock :Block
         if (pass)
         {
             greenlight.SetActive(true);
+            GameObject.Find("Success").GetComponent<AudioSource>().Play();
         }
         else
         {
             redlight.SetActive(true);
+            currentRubik.moveAvailability = false;
+            GameObject.Find("Fail").GetComponent<AudioSource>().Play();
+            StartCoroutine(RestartGame());
         }
+    }
+
+    private IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(1f);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+        yield return null;
     }
 
     

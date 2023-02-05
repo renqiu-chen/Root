@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class EndBlock : Block
 {
     private bool _endFlag=true;
-    public string nextScene;
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Rubik")
@@ -14,18 +13,18 @@ public class EndBlock : Block
             currentRubik = other.GetComponent<Rubik>();
             if (other.transform.position - this.transform.position == Vector3.zero)
             {
-                currentRubik.blockFlag = true;
+                currentRubik.moveAvailability = false;
                 MeshRenderer.material = stayMaterial;
                 if (_endFlag)
                 {
                     _endFlag = false;
-                    SceneManager.LoadScene(nextScene);
+                    Scene scene = SceneManager.GetActiveScene();
+                    SceneManager.LoadScene(scene.buildIndex+1);
                 }
             }
             else
             {
                 MeshRenderer.material = exitMaterial;
-                currentRubik.blockFlag = false;
                 _endFlag = true;
             }
         }
