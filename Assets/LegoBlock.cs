@@ -33,17 +33,10 @@ public class LegoBlock : Block
 
     public void EnableCubes()
     {
-        StartCoroutine(PlaySound());
         foreach (var input in activatedList)
         {
             currentRubik.SetActiveCube(input);
         }
     }
 
-    private IEnumerator PlaySound()
-    {
-        yield return new WaitForSeconds(0.1f);
-        GameObject.Find("Stamp").GetComponent<AudioSource>().Play();
-        yield return null;
-    }
 }
