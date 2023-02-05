@@ -9,15 +9,17 @@ public class LegoBlock : Block
     {
         if (other.tag == "Rubik")
         {
+            currentRubik = other.GetComponent<Rubik>();
             if (other.transform.position - this.transform.position == Vector3.zero)
             {
-                currentRubik = other.GetComponent<Rubik>();
                 MeshRenderer.material = stayMaterial;
+                currentRubik.blockFlag = true;
                 EnableCubes();
             }
             else
             {
                 MeshRenderer.material = exitMaterial;
+                currentRubik.blockFlag = false;
             }
         }
     }

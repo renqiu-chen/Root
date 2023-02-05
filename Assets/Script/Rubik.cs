@@ -361,6 +361,7 @@ public class Rubik : MonoBehaviour
     
     public void VerticalRotateTopTier(bool dir)
     {
+        Vector3[,] positionList = new Vector3[3,3];
         GameObject[,,] changedList = new GameObject[3, 3, 3];
         for (int j = 0; j < 3; j++)
         {
@@ -379,7 +380,28 @@ public class Rubik : MonoBehaviour
                     x1 = -y + 1;
                     y1 = x + 1;
                 }
+                positionList[y1,x1]=Cubes[2, j, k].transform.position;
                 changedList[2, y1, x1] = Cubes[2, j, k];
+            }
+        }
+        for (int j = 0; j < 3; j++)
+        {
+            for (int k = 0; k < 3; k++)
+            {
+                int x = k - 1;
+                int y = j - 1;
+                int x1, y1;
+                if (dir)
+                {
+                    x1 = y + 1;
+                    y1 = -x + 1;
+                }
+                else
+                {
+                    x1 = -y + 1;
+                    y1 = x + 1;
+                }
+                Cubes[2, j, k].transform.position=positionList[j,k];
             }
         }
         Cubes = changedList;
