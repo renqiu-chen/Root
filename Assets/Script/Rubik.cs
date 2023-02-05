@@ -166,77 +166,20 @@ public class Rubik : MonoBehaviour
                 }
             }
 
-            // if (_rotateLeft)
-            // {
-            //     Vector3 to = new Vector3(0, -90, 0);
-            //     if (Vector3.Distance(transform.eulerAngles, to) > 0.01f)
-            //     {
-            //         transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, to, Time.deltaTime);
-            //     }
-            //     else
-            //     {
-            //         transform.eulerAngles = to;
-            //         _rotateLeft = false;
-            //         _rotateTimer = true;
-            //     }
-            // }
-            //
-            // if (_rotateRight)
-            // {
-            //     Vector3 to = new Vector3(0, 90, 0);
-            //     if (Vector3.Distance(transform.eulerAngles, to) > 0.01f)
-            //     {
-            //         transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, to, 0.5f*Time.deltaTime);
-            //     }
-            //     else
-            //     {
-            //         transform.eulerAngles = to;
-            //         _rotateRight = false;
-            //         _rotateTimer = true;
-            //     }
-            // }
-            //
-            // if (_rotateUp)
-            // {
-            //     Vector3 to = new Vector3(0, 0, 90);
-            //     if (Vector3.Distance(transform.eulerAngles, to) > 0.01f)
-            //     {
-            //         transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, to, 0.5f*Time.deltaTime);
-            //     }
-            //     else
-            //     {
-            //         transform.eulerAngles = to;
-            //         _rotateUp = false;
-            //         _rotateTimer = true;
-            //     }
-            // }
-            //
-            // if (_rotateDown)
-            // {
-            //     Vector3 to = new Vector3(0, 0, -90);
-            //     if (Vector3.Distance(transform.eulerAngles, to) > 0.01f)
-            //     {
-            //         transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, to, 0.5f*Time.deltaTime);
-            //     }
-            //     else
-            //     {
-            //         transform.eulerAngles = to;
-            //         _rotateDown = false;
-            //         _rotateTimer = true;
-            //     }
-            // }
-            
-            // Vector3 a = new Vector3(0, 90, 0);
-            // if (Vector3.Distance(transform.eulerAngles, a) > 0.01f)
-            // {
-            //     transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, a, Time.deltaTime);
-            // }
-            // else
-            // {
-            //     transform.eulerAngles = a;
-            // }
-            
-            
+            IEnumerator RotateMe(Vector3 byAngles, float inTime)
+            {
+                _rotateTimer = false;
+                // var fromAngle = transform.rotation;
+                // var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
+                // for(var t = 0f; t < 1; t += Time.deltaTime/inTime) {
+                //     transform.rotation = Quaternion.Lerp(fromAngle, toAngle, t);
+                //     yield return null;
+                // }
+                // transform.rotation = toAngle;
+                
+                _rotateTimer = true;
+                yield return null;
+            }
             
             
             if (!blockFlag)
@@ -245,40 +188,36 @@ public class Rubik : MonoBehaviour
                 {
                     if (_rotateTimer)
                     {
-                        //_animator.Play("TurnUp");
-                        _animator.SetTrigger("Forward");
                         HorizontalRotate(true);
-                        StartCoroutine(ResetRotateTimer());
+                        Log();
+                        StartCoroutine(ResetRotateTimer(new Vector3(90, -0, 0)));
                     }
                 }
                 if (Input.GetKey(KeyCode.DownArrow))
                 {
                     if (_rotateTimer)
                     {
-                        //_animator.Play("TurnDown");
-                        _animator.SetTrigger("Backward");
                         HorizontalRotate(false);
-                        StartCoroutine(ResetRotateTimer());
+                        Log();
+                        StartCoroutine(ResetRotateTimer(new Vector3(-90, 0, 0)));
                     }
                 }
                 if (Input.GetKey(KeyCode.RightArrow))
                 {
                     if (_rotateTimer)
                     {
-                        //_animator.Play("TurnRight");
-                        _animator.SetTrigger("Right");
-                        VerticalRotate(true);
-                        StartCoroutine(ResetRotateTimer());
+                        VerticalRotate(false);
+                        Log();
+                        StartCoroutine(ResetRotateTimer(new Vector3(0, 0, 90)));
                     }
                 }
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     if (_rotateTimer)
                     {
-                        //_animator.Play("TurnLeft");
-                        _animator.SetTrigger("Left");
-                        VerticalRotate(false);
-                        StartCoroutine(ResetRotateTimer());
+                        VerticalRotate(true);
+                        Log();
+                        StartCoroutine(ResetRotateTimer(new Vector3(0, 0, -90)));
                     }
                 }
             }
@@ -294,15 +233,15 @@ public class Rubik : MonoBehaviour
         yield return null;
     }
     
-    private IEnumerator ResetRotateTimer()
+    private IEnumerator ResetRotateTimer(Vector3 angle)
     {
-
         _rotateTimer = false;
+        transform.Rotate(angle,Space.World);
         yield return new WaitForSeconds(0.25f);
         _rotateTimer = true;
         yield return null;
     }
-  
+    
 
     public void SetActiveCube(Vector3 input)
     {
@@ -322,7 +261,7 @@ public class Rubik : MonoBehaviour
                 for (int k = 0; k < 3; k++)
                 {
                     int x = k - 1;
-                    int y = j - 1;
+                    int y = i - 1;
                     int x1, y1;
                     if (dir)
                     {
@@ -334,7 +273,7 @@ public class Rubik : MonoBehaviour
                         x1 = -y + 1;
                         y1 = x + 1;
                     }
-                    changedList[i, y1, x1] = Cubes[i, j, k];
+                    changedList[y1,j,x1] = Cubes[i, j, k];
                 }
             }
         }
@@ -350,8 +289,8 @@ public class Rubik : MonoBehaviour
             {
                 for (int k = 0; k < 3; k++)
                 {
-                    int x = k - 1;
-                    int y = j - 1;
+                    int x = j - 1;
+                    int y = i - 1;
                     int x1, y1;
                     if (dir)
                     {
@@ -363,11 +302,25 @@ public class Rubik : MonoBehaviour
                         x1 = -y + 1;
                         y1 = x + 1;
                     }
-                    changedList[i, y1, x1] = Cubes[i, j, k];
+                    changedList[y1,x1,k] = Cubes[i, j, k];
                 }
             }
         }
         Cubes = changedList;
+    }
+
+    public void Log()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                for (int k = 0; k < 3; k++)
+                {
+                    Debug.Log(Cubes[i, j, k].transform.name+Cubes[i, j, k].transform.parent.name+Cubes[i, j, k].transform.parent.parent.name);
+                }
+            }
+        }
     }
     
     public void VerticalRotateTopTier(bool dir)
