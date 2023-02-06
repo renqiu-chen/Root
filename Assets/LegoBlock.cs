@@ -7,7 +7,6 @@ using UnityEngine;
 public class LegoBlock : Block
 {
     public List<Vector3> activatedList;
-    public List<GameObject> legoCubes;
     public List<GameObject> topCubes;
     public List<GameObject> rightCubes;
     public List<GameObject> leftCubes;
@@ -36,7 +35,7 @@ public class LegoBlock : Block
             {
                 if (cube.x == 2)
                 {
-                    topCubes[(int)cube.y+3*(int)cube.x].SetActive(true);
+                    topCubes[(int)cube.y+3*(int)cube.z].SetActive(true);
                 }
             }
         }
