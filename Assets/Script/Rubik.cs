@@ -207,7 +207,7 @@ public class Rubik : MonoBehaviour
                     if (_rotateTimer)
                     {
                         VerticalRotate(true);
-                        StartCoroutine(ResetRotateTimer(0,90,0));
+                        StartCoroutine(ResetRotateTimer(0,0,-90));
                     }
                 }
                 if (Input.GetKey(KeyCode.LeftArrow))
@@ -216,7 +216,7 @@ public class Rubik : MonoBehaviour
                     if (_rotateTimer)
                     {
                         VerticalRotate(false);
-                        StartCoroutine(ResetRotateTimer(0,-90,0));
+                        StartCoroutine(ResetRotateTimer(0,0,90));
                     }
                 }
             }
