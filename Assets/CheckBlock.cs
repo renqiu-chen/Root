@@ -61,6 +61,7 @@ public class CheckBlock :Block
 
     public void Check()
     {
+        Debug.Log("used");
         foreach (var flag in rightCheck)
         {
             checkRightBools[(int)flag.x, (int)flag.y] = true;
