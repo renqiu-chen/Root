@@ -8,13 +8,17 @@ public class CameraFollow : MonoBehaviour
     public Transform player;
     public Vector3 offset;
     
-    public void Start()
-    {
-        player = GameObject.Find("Rubik").transform;
-    }
 
     // Update is called once per frame
     void Update () {
-        transform.position = player.transform.position + offset;
+        if (player == null)
+        {
+            player = GameObject.Find("Rubik(Clone)").transform;
+        }
+        else
+        {
+            transform.position = player.transform.position + offset;
+        }
+       
     }
 }

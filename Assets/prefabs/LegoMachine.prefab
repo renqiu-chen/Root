@@ -6897,7 +6897,6 @@ MonoBehaviour:
   - {x: 0, y: 1, z: 2}
   - {x: 1, y: 1, z: 2}
   - {x: 2, y: 1, z: 2}
-  legoCubes: []
   topCubes:
   - {fileID: 2786225350513730746}
   - {fileID: 3532662868825184743}
@@ -23216,8 +23215,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 12d21b48588f79f40a5dc373ef536321, type: 3}
-  - {fileID: -491490594218739996, guid: 12d21b48588f79f40a5dc373ef536321, type: 3}
+  - {fileID: 2100000, guid: 93745037498f4c74999e995cd4ef0b05, type: 2}
+  - {fileID: 2100000, guid: 4baa692e0539d024fae71b5a84f9adae, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
