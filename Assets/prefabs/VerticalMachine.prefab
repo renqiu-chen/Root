@@ -9456,6 +9456,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: normalBlaock
       objectReference: {fileID: 0}
+    - target: {fileID: 2583280646601304484, guid: 12d21b48588f79f40a5dc373ef536321,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006330722969168453, guid: 12d21b48588f79f40a5dc373ef536321,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 93745037498f4c74999e995cd4ef0b05, type: 2}
+    - target: {fileID: 9006330722969168453, guid: 12d21b48588f79f40a5dc373ef536321,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4baa692e0539d024fae71b5a84f9adae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12d21b48588f79f40a5dc373ef536321, type: 3}
 --- !u!4 &8526753966502242241 stripped
