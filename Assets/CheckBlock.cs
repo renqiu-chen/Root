@@ -78,10 +78,13 @@ public class CheckBlock :Block
                 {
                     for (int k = 0; k < 3; k++)
                     {
-                        if (currentRubik.Cubes[i, j, k].activeSelf && !checkBackBools[i, k])
+                        if (currentRubik.Cubes[i, j, k].activeSelf)
                         {
-                            checkBackResult = false;
-                            Debug.Log("rubik more");
+                            if (!checkBackBools[i, k])
+                            {
+                                checkBackResult = false;
+                                Debug.Log("back rubik:"+i+j+k);
+                            }
                         }
                     }
                 }
@@ -94,7 +97,7 @@ public class CheckBlock :Block
                       currentRubik.Cubes[(int)back.x, 2, (int)back.y].activeSelf))
                 {
                     checkBackResult = false;
-                    Debug.Log("check more");
+                    Debug.Log("back check:"+back.x+back.y);
                 }
             }
             
@@ -114,10 +117,13 @@ public class CheckBlock :Block
                 {
                     for (int k = 0; k < 3; k++)
                     {
-                        if (currentRubik.Cubes[i, j, k].activeSelf && !checkRightBools[i, j])
+                        if (currentRubik.Cubes[i, j, k].activeSelf)
                         {
-                            checkRightResult = false;
-                            Debug.Log("rubik more");
+                            if (!checkRightBools[i, j])
+                            {
+                                checkRightResult = false;
+                                Debug.Log("right rubik:"+i+j+k);
+                            }
                         }
                     }
                 }
@@ -130,7 +136,7 @@ public class CheckBlock :Block
                       currentRubik.Cubes[(int)right.x, (int)right.y, 2].activeSelf))
                 {
                     checkRightResult = false;
-                    Debug.Log("check more");
+                    Debug.Log("right check:"+right.x+right.y);
                 }
             }
             
