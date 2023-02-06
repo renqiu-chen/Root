@@ -35,7 +35,7 @@ public class LegoBlock : Block
             {
                 if (cube.x == 2)
                 {
-                    topCubes[(int)cube.y+3*(int)cube.z].SetActive(true);
+                    topCubes[(int)cube.z+3*(int)cube.y].SetActive(true);
                 }
             }
         }

@@ -14,7 +14,7 @@ public class CheckBlock :Block
     public bool checkRight;
     public bool checkBack;
     public bool pass=true;
-    private bool _checkFlag;
+    private bool _checkFlag=true;
     public GameObject redlight;
     public GameObject greenlight;
     public AudioSource SuccessSound;
@@ -40,7 +40,7 @@ public class CheckBlock :Block
         if (other.tag == "Rubik")
         {
             currentRubik = other.GetComponent<Rubik>();
-            if (other.transform.position - this.transform.position == Vector3.zero)
+            if ((other.transform.position - this.transform.position).magnitude<0.01f)
             {
                 currentRubik.blockFlag = true;
                 MeshRenderer.material = stayMaterial;

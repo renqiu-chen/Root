@@ -9,6 +9,7 @@ public class StartBlock : Block
 
     public void OnEnable()
     {
-        Instantiate(Rubic,transform.position,Quaternion.identity);
+        GameObject cube=Instantiate(Rubic,transform.position,Quaternion.identity);
+        cube.transform.position = transform.position;
     }
 }

@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour
     void Update () {
         if (player == null)
         {
-            player = GameObject.Find("Rubik(Clone)").transform;
+            player = GameObject.FindWithTag("Rubik").transform;
         }
         else
         {
