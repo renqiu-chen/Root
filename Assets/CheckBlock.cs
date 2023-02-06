@@ -19,7 +19,21 @@ public class CheckBlock :Block
     public GameObject greenlight;
     public AudioSource SuccessSound;
     public AudioSource FailSound;
+    public List<GameObject> rightCheckCubes;
+    public List<GameObject> backCheckCubes;
 
+
+    public void OnEnable()
+    {
+        foreach (var right in rightCheck)
+        {
+            rightCheckCubes[(int)right.y+3*(int)right.x].SetActive(true);
+        }
+        foreach (var right in backCheck)
+        {
+            backCheckCubes[(int)right.y+3*(int)right.x].SetActive(true);
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {

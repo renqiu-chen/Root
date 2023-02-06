@@ -166,16 +166,16 @@ public class Rubik : MonoBehaviour
                 }
             }
 
-            IEnumerator RotateMe(Vector3 byAngles, float inTime)
+            IEnumerator RotateMe(Vector3 dir,float inTime)
             {
                 _rotateTimer = false;
-                // var fromAngle = transform.rotation;
-                // var toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
-                // for(var t = 0f; t < 1; t += Time.deltaTime/inTime) {
-                //     transform.rotation = Quaternion.Lerp(fromAngle, toAngle, t);
-                //     yield return null;
-                // }
-                // transform.rotation = toAngle;
+                var fromAngle = transform.rotation;
+                var toAngle = Quaternion.AngleAxis(90,dir);
+                for(var t = 0f; t < 1; t += Time.deltaTime/inTime) {
+                    transform.rotation = Quaternion.Lerp(fromAngle, toAngle, t);
+                    yield return null;
+                }
+                transform.rotation = toAngle;
                 
                 _rotateTimer = true;
                 yield return null;
@@ -186,34 +186,37 @@ public class Rubik : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
+                    
                     if (_rotateTimer)
                     {
                         HorizontalRotate(true);
-                        StartCoroutine(ResetRotateTimer(new Vector3(-90, 0, 0)));
+                        StartCoroutine(ResetRotateTimer(90,0,0));
                     }
                 }
                 if (Input.GetKey(KeyCode.DownArrow))
                 {
+                    
                     if (_rotateTimer)
                     {
                         HorizontalRotate(false);
-                        StartCoroutine(ResetRotateTimer(new Vector3(90, 0, 0)));
+                        StartCoroutine(ResetRotateTimer(-90,0,0));
                     }
                 }
                 if (Input.GetKey(KeyCode.RightArrow))
                 {
                     if (_rotateTimer)
                     {
-                        VerticalRotate(false);
-                        StartCoroutine(ResetRotateTimer(new Vector3(0, 0, 90)));
+                        VerticalRotate(true);
+                        StartCoroutine(ResetRotateTimer(0,90,0));
                     }
                 }
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
+                    
                     if (_rotateTimer)
                     {
-                        VerticalRotate(true);
-                        StartCoroutine(ResetRotateTimer(new Vector3(0, 0, -90)));
+                        VerticalRotate(false);
+                        StartCoroutine(ResetRotateTimer(0,-90,0));
                     }
                 }
             }
@@ -229,10 +232,10 @@ public class Rubik : MonoBehaviour
         yield return null;
     }
     
-    private IEnumerator ResetRotateTimer(Vector3 angle)
+    private IEnumerator ResetRotateTimer(float x,float y,float z)
     {
         _rotateTimer = false;
-        transform.Rotate(angle,Space.World);
+        transform.Rotate( x,y,z, Space.World);
         yield return new WaitForSeconds(0.25f);
         _rotateTimer = true;
         yield return null;

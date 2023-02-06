@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 4928881839254641525}
   - component: {fileID: 2786081102436289819}
   - component: {fileID: 8036829879437854572}
-  - component: {fileID: 9126549112293321177}
+  - component: {fileID: 3703652165327174368}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -215,7 +215,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9126549112293321177
+--- !u!114 &3703652165327174368
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6835526793512420380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81bc9920cfe701149bb554adbd204184, type: 3}
+  m_Script: {fileID: 11500000, guid: e6ddd8a3f0fa1994ba2ea48df550d62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stayMaterial: {fileID: 0}
@@ -233,3 +233,4 @@ MonoBehaviour:
   leftBlock: {fileID: 0}
   rightBlock: {fileID: 0}
   blockDirection: {x: 0, y: 0, z: 0}
+  Rubic: {fileID: 1185143659818658625, guid: 702d1d1519fc6fa4ca4485856c597017, type: 3}
