@@ -61,7 +61,6 @@ public class CheckBlock :Block
 
     public void Check()
     {
-        Debug.Log("used");
         foreach (var flag in rightCheck)
         {
             checkRightBools[(int)flag.x, (int)flag.y] = true;
@@ -82,6 +81,7 @@ public class CheckBlock :Block
                         if (currentRubik.Cubes[i, j, k].activeSelf && !checkBackBools[i, k])
                         {
                             checkBackResult = false;
+                            Debug.Log("rubik more");
                         }
                     }
                 }
@@ -94,6 +94,7 @@ public class CheckBlock :Block
                       currentRubik.Cubes[(int)back.x, 2, (int)back.y].activeSelf))
                 {
                     checkBackResult = false;
+                    Debug.Log("check more");
                 }
             }
             
