@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,22 +9,22 @@ public class Rubik : MonoBehaviour
 {
     public GameObject[,,] Cubes=new GameObject[3,3,3];
     public bool moveAvailability;
-    public bool moveLeft;
-    public bool moveRight;
+    public bool rotateAbility=true;
+    public Vector3 rotateAngle;
     public bool stopMoving;
-    public bool blockFlag=false;
+    public bool blockFlag = false;
     public float moveTimeGap;
-    private Rigidbody _rigidbody;
-    public Vector3 velocity;
+    public float moveSpeed;
+    public float rotateSpeed;
     private bool _moveForwardFlag=true;
     private bool _moveVerticalFlag=false;
     private bool _moveVerticalTimer = true;
-    private bool _rotateTimer = true;
     private bool _rotateLeft=false;
     private bool _rotateRight=false;
     private bool _rotateUp=false;
-    private bool _rotateDown=false;
-    private Animator _animator;
+    private bool _rotateDown = false;
+    private Quaternion _currentQuaternion;
+    private Quaternion _targetQuaternion;
     [SerializeField] private Block currentBlock;
     [SerializeField] private Block targetBlock;
     [SerializeField] private Block verticalTargetBlock;
@@ -40,8 +41,6 @@ public class Rubik : MonoBehaviour
                 }
             }
         }
-        _rigidbody = GetComponent<Rigidbody>();
-        _animator = GetComponent<Animator>();
         moveAvailability = true;
         var ray = new Ray (transform.position, transform.forward);
         RaycastHit hit;
@@ -50,16 +49,6 @@ public class Rubik : MonoBehaviour
             targetBlock = hit.transform.GetComponent<Block>();
         }
         Reset();
-        // for (int i = 0; i < 3; i++)
-        // {
-        //     for (int j = 0; j < 3; j++)
-        //     {
-        //         for (int k = 0; k < 3; k++)
-        //         {
-        //             Debug.Log(Cubes[i,j,k]+Cubes[i,j,k].transform.parent.name+Cubes[i,j,k].transform.parent.parent.name);
-        //         }
-        //     }
-        // }
     }
 
     public void Reset()
@@ -105,7 +94,7 @@ public class Rubik : MonoBehaviour
             if (!stopMoving)
             {
                 this.transform.position =
-                    Vector3.MoveTowards(this.transform.position, targetBlock.transform.position, 2*Time.fixedDeltaTime);
+                    Vector3.MoveTowards(this.transform.position, targetBlock.transform.position, moveSpeed*Time.fixedDeltaTime);
                 if (_moveForwardFlag)
                 {
                     currentBlock = targetBlock;
@@ -117,7 +106,11 @@ public class Rubik : MonoBehaviour
                     StartCoroutine(BetweenMove());
                 }
             }
-            
+
+            if (!rotateAbility)
+            {
+                transform.Rotate(rotateAngle*Time.fixedDeltaTime*4,Space.World);
+            }
             if (stopMoving)
             {
                 if (blockFlag)
@@ -165,58 +158,43 @@ public class Rubik : MonoBehaviour
                     }
                 }
             }
-
-            IEnumerator RotateMe(Vector3 dir,float inTime)
-            {
-                _rotateTimer = false;
-                var fromAngle = transform.rotation;
-                var toAngle = Quaternion.AngleAxis(90,dir);
-                for(var t = 0f; t < 1; t += Time.deltaTime/inTime) {
-                    transform.rotation = Quaternion.Lerp(fromAngle, toAngle, t);
-                    yield return null;
-                }
-                transform.rotation = toAngle;
-                
-                _rotateTimer = true;
-                yield return null;
-            }
+            
             
             
             if (!blockFlag)
             {
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
-                    
-                    if (_rotateTimer)
+                    if (rotateAbility)
                     {
                         HorizontalRotate(true);
-                        StartCoroutine(ResetRotateTimer(90,0,0));
+                        StartCoroutine(Rotate(90,0,0));
                     }
                 }
                 if (Input.GetKey(KeyCode.DownArrow))
                 {
-                    
-                    if (_rotateTimer)
+                    if (rotateAbility)
                     {
                         HorizontalRotate(false);
-                        StartCoroutine(ResetRotateTimer(-90,0,0));
+                        StartCoroutine(Rotate(-90,0,0));
                     }
                 }
                 if (Input.GetKey(KeyCode.RightArrow))
                 {
-                    if (_rotateTimer)
+                    if (rotateAbility)
                     {
                         VerticalRotate(true);
-                        StartCoroutine(ResetRotateTimer(0,0,-90));
+                        StartCoroutine(Rotate(0,0,-90));
                     }
                 }
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     
-                    if (_rotateTimer)
+                    if (rotateAbility)
                     {
                         VerticalRotate(false);
-                        StartCoroutine(ResetRotateTimer(0,0,90));
+                        
+                        StartCoroutine(Rotate(0,0,90));
                     }
                 }
             }
@@ -232,13 +210,22 @@ public class Rubik : MonoBehaviour
         yield return null;
     }
     
-    private IEnumerator ResetRotateTimer(float x,float y,float z)
+    private IEnumerator Rotate(float x,float y,float z)
     {
-        _rotateTimer = false;
-        transform.Rotate( x,y,z, Space.World);
+        rotateAbility = false;
+        rotateAngle.x = x;
+        rotateAngle.y = y;
+        rotateAngle.z = z;
+        _currentQuaternion = transform.rotation;
+        Quaternion eulerRot = Quaternion.Euler(x, y, z);
+        _targetQuaternion =
+            _currentQuaternion * (Quaternion.Inverse(_currentQuaternion) * eulerRot * _currentQuaternion);
         yield return new WaitForSeconds(0.25f);
-        _rotateTimer = true;
-        yield return null;
+        rotateAngle.x = 0;
+        rotateAngle.y = 0;
+        rotateAngle.z = 0;
+        transform.rotation = _targetQuaternion;
+        rotateAbility = true;
     }
     
 

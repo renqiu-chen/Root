@@ -150,12 +150,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveAvailability: 0
-  moveLeft: 0
-  moveRight: 0
+  rotateAbility: 1
+  rotateAngle: {x: 0, y: 0, z: 0}
   stopMoving: 0
   blockFlag: 0
   moveTimeGap: 1
-  velocity: {x: 0, y: 0, z: 0}
+  moveSpeed: 2
+  rotateSpeed: 4
   currentBlock: {fileID: 0}
   targetBlock: {fileID: 0}
   verticalTargetBlock: {fileID: 0}
