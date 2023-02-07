@@ -266,6 +266,8 @@ public class Rubik : MonoBehaviour
         Cubes = changedList;
     }
     
+    public void Hello(){}
+    
     public void HorizontalRotate(bool dir)
     {
         GameObject[,,] changedList = new GameObject[3, 3, 3];
