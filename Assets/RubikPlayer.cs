@@ -323,6 +323,5 @@ public class RubikPlayer : Rubik
     
     public override void SelfDestroy()
     {
-        Destroy(gameObject);
     }
 }
