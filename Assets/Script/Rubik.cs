@@ -29,4 +29,6 @@ public class Rubik : MonoBehaviour
     public virtual void SetActiveCube(Vector3 input){}
     
     public virtual void VerticalRotateTopTier(bool dir){}
+    
+    public virtual void SelfDestroy(){}
 }

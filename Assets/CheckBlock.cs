@@ -157,7 +157,16 @@ public class CheckBlock :Block
             redlight.SetActive(true);
             currentRubik.moveAvailability = false;
             FailSound.Play();
-            StartCoroutine(RestartGame());
+            if (currentRubik.GetType() == typeof(RubikAi))
+            {
+                currentRubik.SelfDestroy();
+            }
+            else
+            {
+                currentRubik.SelfDestroy();
+                StartCoroutine(RestartGame());
+            }
+            
         }
     }
 

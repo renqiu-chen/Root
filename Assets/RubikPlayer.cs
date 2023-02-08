@@ -320,4 +320,9 @@ public class RubikPlayer : Rubik
         }
         Cubes = changedList;
     }
+    
+    public override void SelfDestroy()
+    {
+        Destroy(gameObject);
+    }
 }

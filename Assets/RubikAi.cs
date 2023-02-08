@@ -143,8 +143,8 @@ public class RubikAi : Rubik
         Cubes = changedList;
     }
 
-    public void Destroy()
+    public override void SelfDestroy()
     {
-        Destroy(this);
+        Destroy(gameObject);
     }
 }
