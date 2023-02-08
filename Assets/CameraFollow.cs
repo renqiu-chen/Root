@@ -13,12 +13,11 @@ public class CameraFollow : MonoBehaviour
     void Update () {
         if (player == null)
         {
-            player = GameObject.FindWithTag("Rubik").transform;
+            player = GameObject.FindObjectOfType<RubikPlayer>().transform;
         }
         else
         {
             transform.position = player.transform.position + offset;
         }
-       
     }
 }

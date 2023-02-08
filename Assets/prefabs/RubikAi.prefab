@@ -165,12 +165,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveAvailability: 0
-  moveLeft: 0
-  moveRight: 0
+  rotateAbility: 1
+  rotateAngle: {x: 0, y: 0, z: 0}
   stopMoving: 0
   blockFlag: 0
   moveTimeGap: 1
-  velocity: {x: 0, y: 0, z: 0}
+  moveSpeed: 2
+  rotateSpeed: 0
   currentBlock: {fileID: 0}
   targetBlock: {fileID: 0}
   verticalTargetBlock: {fileID: 0}
@@ -2314,7 +2315,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0279b9b187bb19943ab1eb27f9306cb1, type: 2}
+      objectReference: {fileID: 2100000, guid: a1e00f4c82ec68949b52c4eed144ea52, type: 2}
     - target: {fileID: 919132149155446097, guid: 1873e11c192bba34ab17cc99d5fd8697,
         type: 3}
       propertyPath: m_Name
