@@ -46,9 +46,9 @@ GameObject:
   - component: {fileID: 1185143659818658629}
   - component: {fileID: 1185143659818658630}
   - component: {fileID: 1185143659818658631}
-  - component: {fileID: 1185143659818658624}
   - component: {fileID: 1185143659818658635}
   - component: {fileID: 3242913367736686423}
+  - component: {fileID: 8769417397860716898}
   m_Layer: 0
   m_Name: Rubik
   m_TagString: Rubik
@@ -137,29 +137,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1185143659818658624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185143659818658625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 692a36c4ba6de0e4bb73517045935c65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveAvailability: 0
-  rotateAbility: 1
-  rotateAngle: {x: 0, y: 0, z: 0}
-  stopMoving: 0
-  blockFlag: 0
-  moveTimeGap: 1
-  moveSpeed: 2
-  rotateSpeed: 4
-  currentBlock: {fileID: 0}
-  targetBlock: {fileID: 0}
-  verticalTargetBlock: {fileID: 0}
 --- !u!54 &1185143659818658635
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,6 +161,29 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185143659818658625}
   m_Enabled: 1
+--- !u!114 &8769417397860716898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185143659818658625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1029b18fed4824f88dd0ef35cb6271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveAvailability: 0
+  rotateAbility: 1
+  rotateAngle: {x: 0, y: 0, z: 0}
+  stopMoving: 0
+  blockFlag: 0
+  moveTimeGap: 0.5
+  moveSpeed: 2
+  rotateSpeed: 4
+  currentBlock: {fileID: 0}
+  targetBlock: {fileID: 0}
+  verticalTargetBlock: {fileID: 0}
 --- !u!1 &1185143659882482138
 GameObject:
   m_ObjectHideFlags: 0

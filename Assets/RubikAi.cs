@@ -4,29 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class RubikAi : MonoBehaviour
+public class RubikAi : Rubik
 {
-    public GameObject[,,] Cubes=new GameObject[3,3,3];
-    public bool moveAvailability;
-    public bool moveLeft;
-    public bool moveRight;
-    public bool stopMoving;
-    public bool blockFlag=false;
-    public float moveTimeGap;
-    private Rigidbody _rigidbody;
-    public Vector3 velocity;
-    private bool _moveForwardFlag=true;
-    private bool _moveVerticalFlag=false;
-    private bool _moveVerticalTimer = true;
-    private bool _rotateTimer = true;
-    private bool _rotateLeft=false;
-    private bool _rotateRight=false;
-    private bool _rotateUp=false;
-    private bool _rotateDown=false;
-    private Animator _animator;
-    [SerializeField] private Block currentBlock;
-    [SerializeField] private Block targetBlock;
-    [SerializeField] private Block verticalTargetBlock;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,8 +19,6 @@ public class RubikAi : MonoBehaviour
                 }
             }
         }
-        _rigidbody = GetComponent<Rigidbody>();
-        _animator = GetComponent<Animator>();
         moveAvailability = true;
         var ray = new Ray (transform.position, transform.forward);
         RaycastHit hit;
@@ -50,16 +27,6 @@ public class RubikAi : MonoBehaviour
             targetBlock = hit.transform.GetComponent<Block>();
         }
         Reset();
-        // for (int i = 0; i < 3; i++)
-        // {
-        //     for (int j = 0; j < 3; j++)
-        //     {
-        //         for (int k = 0; k < 3; k++)
-        //         {
-        //             Debug.Log(Cubes[i,j,k]+Cubes[i,j,k].transform.parent.name+Cubes[i,j,k].transform.parent.parent.name);
-        //         }
-        //     }
-        // }
     }
 
     public void Reset()
@@ -119,27 +86,8 @@ public class RubikAi : MonoBehaviour
             }
         }
     }
-    
 
-
-    private IEnumerator ResetVerticalTimer()
-    {
-        yield return new WaitForSeconds(0.25f);
-        _moveVerticalTimer = true;
-        yield return null;
-    }
-    
-    private IEnumerator ResetRotateTimer(Vector3 angle)
-    {
-        _rotateTimer = false;
-        transform.Rotate(angle,Space.World);
-        yield return new WaitForSeconds(0.25f);
-        _rotateTimer = true;
-        yield return null;
-    }
-    
-
-    public void SetActiveCube(Vector3 input)
+    public override void SetActiveCube(Vector3 input)
     {
         int i = (int)input.x;
         int j = (int)input.y;
@@ -147,79 +95,7 @@ public class RubikAi : MonoBehaviour
         Cubes[i,j,k].SetActive(true);
     }
 
-    public void VerticalRotate(bool dir)
-    {
-        GameObject[,,] changedList = new GameObject[3, 3, 3];
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                for (int k = 0; k < 3; k++)
-                {
-                    int x = k - 1;
-                    int y = i - 1;
-                    int x1, y1;
-                    if (dir)
-                    {
-                        x1 = y + 1;
-                        y1 = -x + 1;
-                    }
-                    else
-                    {
-                        x1 = -y + 1;
-                        y1 = x + 1;
-                    }
-                    changedList[y1,j,x1] = Cubes[i, j, k];
-                }
-            }
-        }
-        Cubes = changedList;
-    }
-    
-    public void HorizontalRotate(bool dir)
-    {
-        GameObject[,,] changedList = new GameObject[3, 3, 3];
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                for (int k = 0; k < 3; k++)
-                {
-                    int x = j - 1;
-                    int y = i - 1;
-                    int x1, y1;
-                    if (dir)
-                    {
-                        x1 = y + 1;
-                        y1 = -x + 1;
-                    }
-                    else
-                    {
-                        x1 = -y + 1;
-                        y1 = x + 1;
-                    }
-                    changedList[y1,x1,k] = Cubes[i, j, k];
-                }
-            }
-        }
-        Cubes = changedList;
-    }
-
-    public void Log()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                for (int k = 0; k < 3; k++)
-                {
-                    Debug.Log(Cubes[i, j, k].transform.name+Cubes[i, j, k].transform.parent.name+Cubes[i, j, k].transform.parent.parent.name);
-                }
-            }
-        }
-    }
-    
-    public void VerticalRotateTopTier(bool dir)
+    public override void VerticalRotateTopTier(bool dir)
     {
         Vector3[,] positionList = new Vector3[3,3];
         GameObject[,,] changedList = new GameObject[3, 3, 3];
@@ -265,5 +141,10 @@ public class RubikAi : MonoBehaviour
             }
         }
         Cubes = changedList;
+    }
+
+    public void Destroy()
+    {
+        Destroy(this);
     }
 }
