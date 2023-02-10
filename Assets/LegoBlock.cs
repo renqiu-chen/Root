@@ -87,7 +87,6 @@ public class LegoBlock : Block
                 MeshRenderer.material = stayMaterial;
                 if (_legoFlag)
                 {
-                    EnableCubes();
                     _legoFlag = false;
                 }
             }
@@ -102,9 +101,12 @@ public class LegoBlock : Block
 
     public void EnableCubes()
     {
-        foreach (var input in activatedList)
+        if (!_legoFlag)
         {
-            currentRubik.SetActiveCube(input);
+            foreach (var input in activatedList)
+            {
+                currentRubik.SetActiveCube(input);
+            } 
         }
     }
 
