@@ -78,6 +78,7 @@ public class CheckBlock :Block
                 {
                     for (int k = 0; k < 3; k++)
                     {
+                        Debug.Log(currentRubik.Cubes[i, j, k]);
                         if (currentRubik.Cubes[i, j, k].activeSelf)
                         {
                             if (!checkBackBools[i, k])

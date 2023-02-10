@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RotateBlock : Block
 {
     public List<Vector3> activatedList;
     private bool _rotateFlag=true;
+    private bool _enableRotate;
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Rubik")
@@ -31,11 +33,17 @@ public class RotateBlock : Block
 
     public void RotateCubesCounterClockWise()
     {
-        currentRubik.VerticalRotateTopTier(true);
+        if (!_rotateFlag)
+        {
+            currentRubik.VerticalRotateTopTier(true);
+        }
     }
 
     public void RotateCubesClockWise()
     {
-        currentRubik.VerticalRotateTopTier(false);
+        if (!_rotateFlag)
+        {
+            currentRubik.VerticalRotateTopTier(false);
+        }
     }
 }

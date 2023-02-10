@@ -93,7 +93,7 @@ public class RubikPlayer : Rubik
                 {
                     return;
                 }
-                if (Input.GetKey(KeyCode.A))
+                if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     if (targetBlock.leftBlock)
                     {
@@ -108,7 +108,7 @@ public class RubikPlayer : Rubik
                     }
 
                 }
-                if (Input.GetKey(KeyCode.D))
+                if (Input.GetKey(KeyCode.RightArrow))
                 {
                     if (targetBlock.rightBlock)
                     {
@@ -139,7 +139,23 @@ public class RubikPlayer : Rubik
             
             if (!blockFlag)
             {
-                if (Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetKey(KeyCode.Q))
+                {
+                    if (rotateAbility)
+                    {
+                        HorizontalRotate(true);
+                        StartCoroutine(Rotate(0,-90,0));
+                    }
+                }
+                if (Input.GetKey(KeyCode.E))
+                {
+                    if (rotateAbility)
+                    {
+                        HorizontalRotate(false);
+                        StartCoroutine(Rotate(0,90,0));
+                    }
+                }
+                if (Input.GetKey(KeyCode.W))
                 {
                     if (rotateAbility)
                     {
@@ -147,7 +163,7 @@ public class RubikPlayer : Rubik
                         StartCoroutine(Rotate(90,0,0));
                     }
                 }
-                if (Input.GetKey(KeyCode.DownArrow))
+                if (Input.GetKey(KeyCode.S))
                 {
                     if (rotateAbility)
                     {
@@ -155,7 +171,7 @@ public class RubikPlayer : Rubik
                         StartCoroutine(Rotate(-90,0,0));
                     }
                 }
-                if (Input.GetKey(KeyCode.RightArrow))
+                if (Input.GetKey(KeyCode.D))
                 {
                     if (rotateAbility)
                     {
@@ -163,7 +179,7 @@ public class RubikPlayer : Rubik
                         StartCoroutine(Rotate(0,0,-90));
                     }
                 }
-                if (Input.GetKey(KeyCode.LeftArrow))
+                if (Input.GetKey(KeyCode.A))
                 {
                     
                     if (rotateAbility)
@@ -316,6 +332,17 @@ public class RubikPlayer : Rubik
                     y1 = x + 1;
                 }
                 Cubes[2, j, k].transform.position=positionList[j,k];
+            }
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                for (int k = 0; k < 3; k++)
+                {
+                    changedList[i, j, k] = Cubes[i, j, k];
+                }
             }
         }
         Cubes = changedList;
