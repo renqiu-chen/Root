@@ -5,13 +5,17 @@ using UnityEngine;
 public class animatorTrigger : MonoBehaviour
 {
     public GameObject particleEffect;
-    void ParticaleSwitchOff()
+    public LegoBlock block;
+    public void ParticaleSwitchOff()
     {
         particleEffect.SetActive(false);
+        block.EnableCubes();
+        Debug.Log("enabled");
     }
 
-    void ParticaleSwitchOn()
+    public void ParticaleSwitchOn()
     {
         particleEffect.SetActive(true);
+
     }
 }
