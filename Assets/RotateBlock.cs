@@ -33,7 +33,7 @@ public class RotateBlock : Block
     {
         currentRubik.VerticalRotateTopTier(true);
     }
-    
+
     public void RotateCubesClockWise()
     {
         currentRubik.VerticalRotateTopTier(false);
