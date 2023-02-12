@@ -7,6 +7,7 @@ using UnityEngine;
 public class RubikAi : Rubik
 {
     // Start is called before the first frame update
+    public CheckBlock checkBlock;
     void Start()
     {
         for (int i = 0; i < 3; i++)
@@ -19,6 +20,7 @@ public class RubikAi : Rubik
                 }
             }
         }
+        checkBlock = FindObjectOfType<CheckBlock>();
         moveAvailability = true;
         var ray = new Ray (transform.position, transform.forward);
         RaycastHit hit;
@@ -27,6 +29,7 @@ public class RubikAi : Rubik
             targetBlock = hit.transform.GetComponent<Block>();
         }
         Reset();
+        InitByCheckPoint(checkBlock);
     }
 
     public void Reset()
@@ -146,5 +149,19 @@ public class RubikAi : Rubik
     public override void SelfDestroy()
     {
         Destroy(gameObject);
+    }
+
+    public void InitByCheckPoint(CheckBlock checkBlock)
+    {
+        foreach (var right in checkBlock.rightCheck)
+        {
+            foreach (var back in checkBlock.backCheck)
+            {
+                if (right.x == back.x)
+                {
+                    Cubes[(int)right.x, (int)right.y , (int)back.y].SetActive(true);
+                }
+            }
+        }
     }
 }
