@@ -3904,7 +3904,7 @@ PrefabInstance:
     - target: {fileID: 7201760541588260957, guid: f38a69f69472ab54f844ce72d03ae5c5,
         type: 3}
       propertyPath: rightCheck.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7201760541588260957, guid: f38a69f69472ab54f844ce72d03ae5c5,
         type: 3}
@@ -4915,7 +4915,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1534330519}
-  m_RootOrder: 46
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1331545337
 BoxCollider:
@@ -5409,6 +5409,7 @@ Transform:
   - {fileID: 168385341}
   - {fileID: 1899137816}
   - {fileID: 1836092995}
+  - {fileID: 1331545336}
   - {fileID: 1705979454}
   - {fileID: 1483688963}
   - {fileID: 1083872495}
@@ -5418,7 +5419,6 @@ Transform:
   - {fileID: 273044148}
   - {fileID: 666052417}
   - {fileID: 398283632}
-  - {fileID: 1331545336}
   - {fileID: 1822141797}
   - {fileID: 1264554919}
   - {fileID: 1123960849}

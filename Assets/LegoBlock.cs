@@ -99,6 +99,7 @@ public class LegoBlock : Block
         }
     }
 
+
     public void EnableCubes()
     {
         if (!_legoFlag)

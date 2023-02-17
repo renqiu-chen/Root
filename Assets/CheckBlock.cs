@@ -40,6 +40,7 @@ public class CheckBlock :Block
         if (other.tag == "Rubik")
         {
             currentRubik = other.GetComponent<Rubik>();
+            currentRubik.blockFlag = true;
             if ((other.transform.position - this.transform.position).magnitude<0.01f)
             {
                 currentRubik.blockFlag = true;
@@ -58,6 +59,7 @@ public class CheckBlock :Block
             }
         }
     }
+
 
     public void Check()
     {
@@ -78,7 +80,6 @@ public class CheckBlock :Block
                 {
                     for (int k = 0; k < 3; k++)
                     {
-                        Debug.Log(currentRubik.Cubes[i, j, k]);
                         if (currentRubik.Cubes[i, j, k].activeSelf)
                         {
                             if (!checkBackBools[i, k])

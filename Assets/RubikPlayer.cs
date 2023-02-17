@@ -143,7 +143,7 @@ public class RubikPlayer : Rubik
                 {
                     if (rotateAbility)
                     {
-                        HorizontalRotate(true);
+                        ForwardRotate(false);
                         StartCoroutine(Rotate(0,-90,0));
                     }
                 }
@@ -151,7 +151,7 @@ public class RubikPlayer : Rubik
                 {
                     if (rotateAbility)
                     {
-                        HorizontalRotate(false);
+                        ForwardRotate(true);
                         StartCoroutine(Rotate(0,90,0));
                     }
                 }
@@ -283,6 +283,35 @@ public class RubikPlayer : Rubik
                         y1 = x + 1;
                     }
                     changedList[y1,x1,k] = Cubes[i, j, k];
+                }
+            }
+        }
+        Cubes = changedList;
+    }
+    
+    public void ForwardRotate(bool dir)
+    {
+        GameObject[,,] changedList = new GameObject[3, 3, 3];
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                for (int k = 0; k < 3; k++)
+                {
+                    int x = k - 1;
+                    int y = j - 1;
+                    int x1, y1;
+                    if (dir)
+                    {
+                        x1 = y + 1;
+                        y1 = -x + 1;
+                    }
+                    else
+                    {
+                        x1 = -y + 1;
+                        y1 = x + 1;
+                    }
+                    changedList[i,y1,x1] = Cubes[i, j, k];
                 }
             }
         }
